@@ -5,11 +5,13 @@ import HomeFeed from "./components/HomeFeed";
 import Notifications from "./components/Notifications";
 import Profile from "./components/Profile";
 import TweetDetails from "./components/TweetDetails";
+import SideBar from "./components/SideBar";
 
 function App() {
   console.log("daje roma!");
   return (
     <Router>
+      <SideBar></SideBar>
       <Switch>
         <Route exact path="/">
           <HomeFeed />
