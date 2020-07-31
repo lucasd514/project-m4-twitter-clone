@@ -24,7 +24,7 @@ function App() {
         <Route exact path="/notification">
           <Notifications />
         </Route>
-        <Route exact path="/profile">
+        <Route exact path="/profile/:handle">
           <Profile />
         </Route>
       </Switch>
