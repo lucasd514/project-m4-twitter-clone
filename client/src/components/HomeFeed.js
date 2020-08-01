@@ -22,17 +22,22 @@ const HomeFeed = () => {
     }
   }, [currentUser]);
 
+  const HomeBox = styled.div`
+    border: 3px solid black;
+    position: absolute;
+    left: 200px;
+  `;
   return (
     <>
       {" "}
       {homeStatus === "idle" ? (
-        <div>
+        <HomeBox>
           {homeFeedData.tweetIds.map((tweetId) => {
             let individualTweet = homeFeedData.tweetsById[tweetId];
             console.log(individualTweet);
             return <TweetDetails tweet={individualTweet}></TweetDetails>;
           })}
-        </div>
+        </HomeBox>
       ) : (
         <div>{homeStatus}</div>
       )}
