@@ -12,8 +12,8 @@ const Profile = () => {
 
   const { handle } = useParams();
   const handleName = handle;
-  console.log("this is current user", currentUser);
-  console.log("this is the dude we went to get", profileData);
+  console.log("this is current user PROFILE", currentUser);
+  console.log("this is the dude we went to get PROFILE", profileData);
 
   useEffect(() => {
     if (currentUser) {
@@ -22,17 +22,21 @@ const Profile = () => {
         .then((response) => response.json())
         // ...then we update the users state
         .then((data) => {
-          setProfileData(data);
+          setProfileData(data.profile);
           setProfileStatus("idle");
         });
     }
   }, [currentUser]);
 
   return (
-    <div>
-      <ProfileHeader />
-      <ProfileTweetFeed />
-    </div>
+    <>
+      {" "}
+      {profileStatus === "idle" ? (
+        <ProfileHeader value={profileData}></ProfileHeader>
+      ) : (
+        <div>{profileStatus}</div>
+      )}
+    </>
   );
 };
 

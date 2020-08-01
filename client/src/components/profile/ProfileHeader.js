@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { CurrentUserContext } from "../CreateUserContext";
+
 import styled from "styled-components";
 
 const BannerImage = styled.img`
@@ -27,12 +29,13 @@ const HeaderBox = styled.div`
 const Navigation = styled.nav`
   border: 3px lightcoral solid;
 `;
-const ProfileHeader = () => {
+const ProfileHeader = (user) => {
+  console.log("lets go", user.value.handle);
   return (
     <HeaderBox>
       <BannerImage src="rip this from users pass through" />
       <Avatar src="rip this from users pass" />
-      <Userinfo>Name handle bio</Userinfo>
+      <Userinfo>{user.value.handle}</Userinfo>
       <LoccationJoin>Location when they joined</LoccationJoin>
       <Followers></Followers>
       <Navigation></Navigation>
