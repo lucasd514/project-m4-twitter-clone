@@ -47,9 +47,13 @@ const Profile = () => {
     <>
       {" "}
       {profileStatus === "idle" && statusTweets === "idle" ? (
-        <div>
+        <>
           <ProfileHeader value={profileData}></ProfileHeader>
-        </div>
+          {profileTweets.tweetIds.map((items) => {
+            let indTweets = profileTweets.tweetsById[items];
+            return <ProfileTweetFeed value={indTweets} />;
+          })}
+        </>
       ) : (
         <div>
           {profileStatus} {statusTweets}
