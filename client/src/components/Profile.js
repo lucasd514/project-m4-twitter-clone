@@ -9,11 +9,11 @@ const Profile = () => {
   const { currentUser, status } = useContext(CurrentUserContext);
   const [profileData, setProfileData] = useState(null);
   const [profileStatus, setProfileStatus] = useState("loading");
-
+  const [profileTweets, setProfileTweets] = useState(null);
   const { handle } = useParams();
   const handleName = handle;
-  console.log("this is current user PROFILE", currentUser);
-  console.log("this is the dude we went to get PROFILE", profileData);
+
+  console.log(profileTweets);
 
   useEffect(() => {
     if (currentUser) {
@@ -28,13 +28,31 @@ const Profile = () => {
     }
   }, [currentUser]);
 
+  useEffect(() => {
+    if (currentUser) {
+      fetch(`/api/${handleName}/feed`)
+        // We get the API response and receive data in JSON format...
+        .then((response) => response.json())
+        // ...then we update the users state
+        .then((data) => {
+          setProfileTweets(data);
+          setProfileStatus("idle");
+        });
+    }
+  }, [currentUser]);
+
   return (
     <>
       {" "}
       {profileStatus === "idle" ? (
-        <ProfileHeader value={profileData}></ProfileHeader>
+        <div>
+          <ProfileHeader value={profileData}></ProfileHeader>
+          <ProfileTweetFeed />
+        </div>
       ) : (
-        <div>{profileStatus}</div>
+        <div>
+          {profileStatus} <ProfileTweetFeed />
+        </div>
       )}
     </>
   );
