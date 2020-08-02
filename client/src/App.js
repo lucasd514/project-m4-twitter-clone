@@ -6,6 +6,7 @@ import Notifications from "./components/Notifications";
 import Profile from "./components/Profile";
 import TweetDetails from "./tweet/TweetDetails";
 import SideBar from "./components/SideBar";
+import IndividualTweet from "./components/IndividualTweet";
 
 function App() {
   return (
@@ -18,8 +19,8 @@ function App() {
         <Route exact path="/bookmarks">
           <Bookmarks />
         </Route>
-        <Route exact path="/tweet">
-          <TweetDetails />
+        <Route exact path="/tweet/:tweetid">
+          <IndividualTweet />
         </Route>
         <Route exact path="/notification">
           <Notifications />
