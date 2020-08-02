@@ -51,7 +51,7 @@ const Profile = () => {
           <ProfileHeader value={profileData}></ProfileHeader>
           {profileTweets.tweetIds.map((items) => {
             let indTweets = profileTweets.tweetsById[items];
-            return <ProfileTweetFeed value={indTweets} />;
+            return <ProfileTweetFeed tweet={indTweets} />;
           })}
         </>
       ) : (
