@@ -10,10 +10,12 @@ const Profile = () => {
   const [profileData, setProfileData] = useState(null);
   const [profileStatus, setProfileStatus] = useState("loading");
   const [profileTweets, setProfileTweets] = useState(null);
+  const [statusTweets, setStatusTweets] = useState("loading");
   const { handle } = useParams();
   const handleName = handle;
 
   console.log(profileTweets);
+  console.log(statusTweets);
 
   useEffect(() => {
     if (currentUser) {
@@ -36,7 +38,7 @@ const Profile = () => {
         // ...then we update the users state
         .then((data) => {
           setProfileTweets(data);
-          setProfileStatus("idle");
+          setStatusTweets("idle");
         });
     }
   }, [currentUser]);
@@ -44,14 +46,13 @@ const Profile = () => {
   return (
     <>
       {" "}
-      {profileStatus === "idle" ? (
+      {profileStatus === "idle" && statusTweets === "idle" ? (
         <div>
           <ProfileHeader value={profileData}></ProfileHeader>
-          <ProfileTweetFeed />
         </div>
       ) : (
         <div>
-          {profileStatus} <ProfileTweetFeed />
+          {profileStatus} {statusTweets}
         </div>
       )}
     </>
