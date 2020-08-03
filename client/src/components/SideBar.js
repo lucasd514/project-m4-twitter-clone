@@ -34,7 +34,6 @@ const SideBarMain = styled.div`
     height: 50px;
     padding-left: 20px;
   }
-
   a {
     text-decoration: none;
   }

@@ -4,6 +4,9 @@ import ActionBar from "../tweet/actionbar";
 
 const TweetDetails = (props) => {
   let info = props;
+  console.log(props.tweet.author.handle);
+  let author = props.tweet.author.handle;
+  let tweets = "/tweet/" + props.tweet.id;
 
   const Wrapper = styled.header`
     display: flex;
@@ -57,19 +60,24 @@ const TweetDetails = (props) => {
 
   return (
     <TweetBox>
-      <Wrapper>
-        <Avatar src={props.tweet.author.avatarSrc} />
-        <Name>
-          <DisplayName>{props.tweet.author.displayName}</DisplayName>
-          <Username>@{props.tweet.author.handle}</Username>
-        </Name>
-      </Wrapper>
-      <TweetContents>{props.tweet.status}</TweetContents>
-      <Timestamp>{props.tweet.timestamp} </Timestamp>
-      {/* ACTION BAR GOES HERE */}
-      <ActionBar value={info} />
+      <a href={tweets}>
+        <Wrapper>
+          <a href={author}>
+            <Avatar src={props.tweet.author.avatarSrc} />
+            <Name>
+              <DisplayName>{props.tweet.author.displayName}</DisplayName>
+              <Username>@{props.tweet.author.handle}</Username>
+            </Name>
+          </a>
+        </Wrapper>
 
-      {/* ACTION BAR ENDS HERE */}
+        <TweetContents>{props.tweet.status}</TweetContents>
+        <Timestamp>{props.tweet.timestamp} </Timestamp>
+        {/* ACTION BAR GOES HERE */}
+        <ActionBar value={info} />
+
+        {/* ACTION BAR ENDS HERE */}
+      </a>
     </TweetBox>
   );
 };
