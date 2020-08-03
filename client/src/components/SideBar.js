@@ -81,7 +81,7 @@ const SideBar = () => {
         </div>
         <div>
           <NavLink
-            to="/profile"
+            to="/treasurymog"
             exact
             activeStyle={{
               fontWeight: "bold",

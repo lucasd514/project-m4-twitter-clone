@@ -69,6 +69,7 @@ router.post("/api/tweet", (req, res) => {
  */
 router.put("/api/tweet/:tweetId/like", (req, res) => {
   const { like } = req.body;
+  console.log("likedconfirm", like);
 
   const tweet = data.tweets[req.params.tweetId];
 
@@ -112,6 +113,7 @@ router.put("/api/tweet/:tweetId/like", (req, res) => {
 // Probably not ideal, but also not as bad as a leaky abstraction.
 router.put("/api/tweet/:tweetId/retweet", (req, res) => {
   const { retweet } = req.body;
+  console.log("rt confirm", retweet);
   const tweet = data.tweets[req.params.tweetId];
 
   if (!tweet) {

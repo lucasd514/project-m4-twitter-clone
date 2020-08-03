@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import ProfileActionBar from "./ProfileActionBar";
 
 const ProfileTweetFeed = (props) => {
   console.log("tweetfeed", props);
@@ -71,10 +72,7 @@ const ProfileTweetFeed = (props) => {
         <TweetContents>{props.tweet.status}</TweetContents>
         <Timestamp>{props.tweet.timestamp} </Timestamp>
       </a>
-      {/* ACTION BAR GOES HERE */}
-      {/* <ActionBar value={info} /> */}
-
-      {/* ACTION BAR ENDS HERE */}
+      <ProfileActionBar buttoninfo={props} />
     </TweetBox>
   );
 };

@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { Icon } from "react-icons-kit";
 import { arrowLeft } from "react-icons-kit/feather/arrowLeft";
+import IndyActionBar from "./indyTweetActionBar";
 
 const IndyTweetPage = (props) => {
   console.log(props.tweet);
@@ -82,7 +83,7 @@ const IndyTweetPage = (props) => {
         <TweetContents>{props.tweet.tweet.status}</TweetContents>
         <Timestamp>{props.tweet.tweet.timestamp}</Timestamp>
         <Divider />
-        {/* action bar here */}
+        <IndyActionBar buttoninfo={props} />
       </Wrapper>
     </div>
   );
