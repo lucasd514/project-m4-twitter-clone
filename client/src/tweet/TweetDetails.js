@@ -74,9 +74,8 @@ const TweetDetails = (props) => {
 
         <TweetContents>{props.tweet.status}</TweetContents>
         <Timestamp>{props.tweet.timestamp} </Timestamp>
-
-        <ActionBar buttoninfo={props} />
       </a>
+      <ActionBar buttoninfo={props} />
     </TweetBox>
   );
 };

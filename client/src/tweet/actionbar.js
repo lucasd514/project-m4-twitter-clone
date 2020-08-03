@@ -7,13 +7,14 @@ import { heart } from "react-icons-kit/feather/heart";
 import { upload } from "react-icons-kit/feather/upload";
 
 const ActionBar = (props) => {
-  const [numLikes, setNumLikes] = useState("");
-  const [numRT, setNumRT] = useState("");
+  const [numLikes, setNumLikes] = useState(props.buttoninfo.tweet.numLikes);
+  const [numRT, setNumRT] = useState(props.buttoninfo.tweet.numRetweets);
+  const [isLiked, setIsLiked] = useState(false);
+  const [isRetweeted, setIsRetweeted] = useState(false);
 
-  console.log("------------------", props);
-
-  console.log("not this");
-
+  const fetchHere = "/api/tweet/" + props.buttoninfo.tweet.id + "/like";
+  console.log(fetchHere);
+  console.log("this id is to be used =============", props.buttoninfo.tweet.id);
   const ActionBox = styled.div`
     display: flex;
     border-bottom: 1px solid;
@@ -32,18 +33,50 @@ const ActionBar = (props) => {
     }
   `;
 
+  const handleToggleLiked = () => {
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ like: !isLiked }),
+    };
+    isLiked
+      ? fetch(fetchHere, requestOptions)
+          .then((response) => response.json())
+          .then(setNumLikes(numLikes - 1))
+      : fetch(fetchHere, requestOptions)
+          .then((response) => response.json())
+          .then(setNumLikes(numLikes + 1));
+    setIsLiked(!isLiked);
+  };
+
+  const handleToggleRetweet = () => {
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ retweet: !isRetweeted }),
+    };
+
+    isRetweeted
+      ? fetch(`/api/tweet/${props.buttoninfo.tweet.id}/retweet`, requestOptions)
+          .then((response) => response.json())
+          .then(setNumRT(numRT - 1))
+      : fetch(`/api/tweet/${props.buttoninfo.tweet.id}/retweet`, requestOptions)
+          .then((response) => response.json())
+          .then(setNumRT(numRT + 1));
+    setIsRetweeted(!isRetweeted);
+  };
   return (
     <ActionBox>
       <ActionBarIcons>
         <Icon icon={messageSquare} />
       </ActionBarIcons>
       <ActionBarIcons>
-        <Icon icon={repeat} />
-        {props.buttoninfo.tweet.numRetweets}
+        <Icon icon={repeat} onClick={handleToggleRetweet} />
+        {numRT}
       </ActionBarIcons>
       <ActionBarIcons>
-        <Icon icon={heart} />
-        {props.buttoninfo.tweet.numLikes}
+        <Icon icon={heart} onClick={handleToggleLiked} />
+        {numLikes}
       </ActionBarIcons>
       <ActionBarIcons>
         <Icon icon={upload} />
