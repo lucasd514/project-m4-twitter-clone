@@ -3,8 +3,9 @@ import styled from "styled-components";
 import ActionBar from "../tweet/actionbar";
 
 const TweetDetails = (props) => {
+  console.log(props);
   let info = props;
-  console.log(props.tweet.author.handle);
+
   let author = props.tweet.author.handle;
   let tweets = "/tweet/" + props.tweet.id;
 
@@ -73,10 +74,8 @@ const TweetDetails = (props) => {
 
         <TweetContents>{props.tweet.status}</TweetContents>
         <Timestamp>{props.tweet.timestamp} </Timestamp>
-        {/* ACTION BAR GOES HERE */}
-        <ActionBar value={info} />
 
-        {/* ACTION BAR ENDS HERE */}
+        <ActionBar buttoninfo={props} />
       </a>
     </TweetBox>
   );

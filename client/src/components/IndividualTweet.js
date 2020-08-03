@@ -12,11 +12,6 @@ const IndividualTweet = () => {
   const { tweetid } = useParams();
   const IDno = tweetid;
 
-  console.log(currentUser);
-  console.log(individualTweetStatus);
-
-  console.log(IndividualTweet);
-
   useEffect(() => {
     if (currentUser) {
       fetch(`/api/tweet/${IDno}`)

@@ -3,7 +3,9 @@ import styled from "styled-components";
 
 const ProfileTweetFeed = (props) => {
   console.log("tweetfeed", props);
-
+  console.log(props.tweet.id);
+  let tweets = "/tweet/" + props.tweet.id;
+  let profile = "/" + props.tweet.author.handle;
   const Wrapper = styled.header`
     display: flex;
   `;
@@ -56,15 +58,19 @@ const ProfileTweetFeed = (props) => {
 
   return (
     <TweetBox>
-      <Wrapper>
-        <Avatar src={props.tweet.author.avatarSrc} />
-        <Name>
-          <DisplayName>{props.tweet.author.displayName}</DisplayName>
-          <Username>@{props.tweet.author.handle}</Username>
-        </Name>
-      </Wrapper>
-      <TweetContents>{props.tweet.status}</TweetContents>
-      <Timestamp>{props.tweet.timestamp} </Timestamp>
+      <a href={tweets}>
+        <a href={profile}>
+          <Wrapper>
+            <Avatar src={props.tweet.author.avatarSrc} />
+            <Name>
+              <DisplayName>{props.tweet.author.displayName}</DisplayName>
+              <Username>@{props.tweet.author.handle}</Username>
+            </Name>
+          </Wrapper>
+        </a>
+        <TweetContents>{props.tweet.status}</TweetContents>
+        <Timestamp>{props.tweet.timestamp} </Timestamp>
+      </a>
       {/* ACTION BAR GOES HERE */}
       {/* <ActionBar value={info} /> */}
 

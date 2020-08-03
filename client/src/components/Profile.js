@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import ProfileHeader from "./profile/ProfileHeader";
 import ProfileTweetFeed from "./profile/ProfileTweetFeed";
+import ProfileInput from "./profile/ProfileInput";
 import { CurrentUserContext } from "./CreateUserContext";
 
 const Profile = () => {
@@ -13,9 +14,6 @@ const Profile = () => {
   const [statusTweets, setStatusTweets] = useState("loading");
   const { handle } = useParams();
   const handleName = handle;
-
-  console.log(profileTweets);
-  console.log(statusTweets);
 
   useEffect(() => {
     if (currentUser) {
@@ -49,6 +47,7 @@ const Profile = () => {
       {profileStatus === "idle" && statusTweets === "idle" ? (
         <>
           <ProfileHeader value={profileData}></ProfileHeader>
+
           {profileTweets.tweetIds.map((items) => {
             let indTweets = profileTweets.tweetsById[items];
             return <ProfileTweetFeed tweet={indTweets} />;

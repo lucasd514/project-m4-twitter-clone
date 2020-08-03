@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { Icon } from "react-icons-kit";
 import { messageSquare } from "react-icons-kit/feather/messageSquare";
@@ -7,7 +7,12 @@ import { heart } from "react-icons-kit/feather/heart";
 import { upload } from "react-icons-kit/feather/upload";
 
 const ActionBar = (props) => {
-  console.log("this is my prop in AB", props);
+  const [numLikes, setNumLikes] = useState("");
+  const [numRT, setNumRT] = useState("");
+
+  console.log("------------------", props);
+
+  console.log("not this");
 
   const ActionBox = styled.div`
     display: flex;
@@ -34,9 +39,11 @@ const ActionBar = (props) => {
       </ActionBarIcons>
       <ActionBarIcons>
         <Icon icon={repeat} />
+        {props.buttoninfo.tweet.numRetweets}
       </ActionBarIcons>
       <ActionBarIcons>
         <Icon icon={heart} />
+        {props.buttoninfo.tweet.numLikes}
       </ActionBarIcons>
       <ActionBarIcons>
         <Icon icon={upload} />
