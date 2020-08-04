@@ -7,7 +7,6 @@ import { heart } from "react-icons-kit/feather/heart";
 import { upload } from "react-icons-kit/feather/upload";
 
 const ProfileActionBar = (props) => {
-  console.log("this is my prop in AB", props);
   const [numLikes, setNumLikes] = useState(props.buttoninfo.tweet.numLikes);
   const [numRT, setNumRT] = useState(props.buttoninfo.tweet.numRetweets);
   const [isLiked, setIsLiked] = useState(false);

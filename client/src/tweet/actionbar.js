@@ -13,8 +13,7 @@ const ActionBar = (props) => {
   const [isRetweeted, setIsRetweeted] = useState(false);
 
   const fetchHere = "/api/tweet/" + props.buttoninfo.tweet.id + "/like";
-  console.log(fetchHere);
-  console.log("this id is to be used =============", props.buttoninfo.tweet.id);
+
   const ActionBox = styled.div`
     display: flex;
     border-bottom: 1px solid;

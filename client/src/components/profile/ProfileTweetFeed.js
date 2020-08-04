@@ -4,8 +4,6 @@ import ProfileActionBar from "./ProfileActionBar";
 import { useHistory } from "react-router-dom";
 
 const ProfileTweetFeed = (props) => {
-  console.log("tweetfeed", props);
-  console.log(props.tweet.id);
   let tweets = "/tweet/" + props.tweet.id;
   let profile = "/" + props.tweet.author.handle;
   const Wrapper = styled.header`
@@ -52,6 +50,7 @@ const ProfileTweetFeed = (props) => {
   const TweetBox = styled.div`
     background: white;
     width: 580px;
+    margin-left: 220px;
     padding: 16px;
     text-align: left;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",

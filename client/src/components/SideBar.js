@@ -9,7 +9,6 @@ import { user } from "react-icons-kit/feather/user";
 import { bookmark } from "react-icons-kit/feather/bookmark";
 
 const SideBarBox = styled.div`
-  border: 2px solid black;
   height: 100vh;
   width: 200px;
   float: left;
@@ -18,7 +17,6 @@ const SideBarBox = styled.div`
 const SideBarMain = styled.div`
   position: absolute;
   div {
-    border: 2px orange solid;
     width: 175px;
     margin-left: 10px;
     margin-right: 10px;
@@ -41,7 +39,6 @@ const SideBarMain = styled.div`
 
 const Cat = styled.div`
   padding: 10px;
-  border: 2px purple dashed;
 `;
 const MeowButton = styled.button`
   border-radius: 25px;

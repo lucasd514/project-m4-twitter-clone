@@ -8,7 +8,7 @@ import { upload } from "react-icons-kit/feather/upload";
 
 const IndyActionBar = (props) => {
   const fetchHere = "";
-  console.log("indy action bar", props);
+
   const [numLikes, setNumLikes] = useState(
     props.buttoninfo.tweet.tweet.numLikes
   );

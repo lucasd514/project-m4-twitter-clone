@@ -1,16 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 import ActionBar from "../tweet/actionbar";
+import { useHistory } from "react-router-dom";
+import moment from "moment";
 
 const TweetDetails = (props) => {
-  console.log(props);
   let info = props;
 
   let author = props.tweet.author.handle;
   let tweets = "/tweet/" + props.tweet.id;
+  let timeClean = moment(props.tweet.timestamp).format("h:mm a ∙ MMM Do, YYYY");
 
-  const Wrapper = styled.header`
-    display: flex;
+  const TweetWrapper = styled.div`
+    background: white;
+    width: 580px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    text-align: left;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Ubuntu, "Helvetica Neue", sans-serif;
   `;
 
   const Avatar = styled.img`
@@ -59,23 +67,39 @@ const TweetDetails = (props) => {
       Roboto, Ubuntu, "Helvetica Neue", sans-serif;
   `;
 
+  const HeadWrapper = styled.header`
+    display: flex;
+  `;
+
+  const history = useHistory();
+
+  function navigateTweet(e) {
+    e.stopPropagation();
+    history.push(`/tweet/${props.tweet.id}`);
+  }
+  function navigateProfile(e) {
+    e.stopPropagation();
+    history.push(`/${props.tweet.author.handle}`);
+  }
   return (
     <TweetBox>
-      <a href={tweets}>
-        <Wrapper>
-          <a href={author}>
-            <Avatar src={props.tweet.author.avatarSrc} />
-            <Name>
-              <DisplayName>{props.tweet.author.displayName}</DisplayName>
-              <Username>@{props.tweet.author.handle}</Username>
-            </Name>
-          </a>
-        </Wrapper>
+      <HeadWrapper tabIndex="0" onClick={navigateProfile}>
+        <Avatar src={props.tweet.author.avatarSrc} />
+        <Name>
+          <DisplayName>{props.tweet.author.displayName}</DisplayName>
+          <Username>@{props.tweet.author.handle}</Username>
+        </Name>
+      </HeadWrapper>
+      <TweetWrapper>
+        <TweetContents tabIndex="0" onClick={navigateTweet}>
+          {props.tweet.status}
+        </TweetContents>
+        <Timestamp tabIndex="0" onClick={navigateTweet}>
+          {timeClean}{" "}
+        </Timestamp>
 
-        <TweetContents>{props.tweet.status}</TweetContents>
-        <Timestamp>{props.tweet.timestamp} </Timestamp>
-      </a>
-      <ActionBar buttoninfo={props} />
+        <ActionBar buttoninfo={props} />
+      </TweetWrapper>
     </TweetBox>
   );
 };

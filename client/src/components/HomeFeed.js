@@ -10,26 +10,22 @@ const HomeFeed = () => {
   const [homeStatus, setHomeStatus] = useState("loading");
 
   useEffect(() => {
-    if (currentUser) {
-      fetch(`/api/me/home-feed`)
-        // We get the API response and receive data in JSON format...
-        .then((response) => response.json())
-        // ...then we update the users state
-        .then((data) => {
-          setHomeFeedData(data);
-          setHomeStatus("idle");
-        });
-    }
+    fetch(`/api/me/home-feed`)
+      // We get the API response and receive data in JSON format...
+      .then((response) => response.json())
+      // ...then we update the users state
+      .then((data) => {
+        setHomeFeedData(data);
+        setHomeStatus("idle");
+      });
   }, [currentUser]);
 
   const HomeBox = styled.div`
-    border: 3px solid black;
     position: absolute;
-    left: 200px;
+    left: 220px;
   `;
   return (
     <>
-      {" "}
       {homeStatus === "idle" ? (
         <HomeBox>
           <TweetInput

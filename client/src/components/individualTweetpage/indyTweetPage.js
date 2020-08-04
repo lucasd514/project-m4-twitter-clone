@@ -6,9 +6,6 @@ import IndyActionBar from "./indyTweetActionBar";
 import { useHistory } from "react-router-dom";
 
 const IndyTweetPage = (props) => {
-  console.log(props.tweet);
-  console.log("author---------------------", props.tweet.tweet.author.handle);
-
   let authorLink = "/" + props.tweet.tweet.author.handle;
 
   const Name = styled.div`
@@ -75,11 +72,16 @@ const IndyTweetPage = (props) => {
     e.stopPropagation();
     history.push(`/${props.tweet.tweet.author.handle}`);
   }
+
+  function goBack(e) {
+    e.stopPropagation();
+    history.goBack();
+  }
   return (
     <div>
       <Meow>
         {" "}
-        <Icon icon={arrowLeft} />
+        <Icon icon={arrowLeft} tabIndex="0" onClick={goBack} />
         <p>Meow</p>
       </Meow>
       <Wrapper>

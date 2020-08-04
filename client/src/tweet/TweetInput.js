@@ -4,16 +4,28 @@ import styled from "styled-components";
 import { CurrentUserContext } from "../components/CreateUserContext";
 
 const TweetInput = ({ setHomeFeedData, homeFeedData }) => {
-  const [value, setValue] = React.useState("");
+  const [textBox, setTextBox] = React.useState("meow here!");
   const [charLimit, setCharLimit] = React.useState(280);
   console.log(homeFeedData);
-  console.log(value);
-  const minusChars = value.length;
+  console.log(textBox);
+  const minusChars = textBox.length;
+
+  const InputBox = styled.div`
+    border: 2px rgb(240, 188, 66) solid;
+    border-radius: 25%;
+    width: 350px;
+    height: 150px;
+    margin-left: 20vw;
+    input {
+      margin-left: 75px;
+      margin-top: 50px;
+    }
+  `;
 
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ status: value }),
+    body: JSON.stringify({ status: textBox }),
   };
 
   function sendTweet(param) {
@@ -31,24 +43,24 @@ const TweetInput = ({ setHomeFeedData, homeFeedData }) => {
   }
 
   return (
-    <div>
+    <InputBox>
       <input
         type="text"
-        value={value}
-        onChange={(ev) => setValue(ev.target.value)}
+        value={textBox}
+        onChange={(ev) => setTextBox(ev.target.value)}
         onKeyDown={(ev) => {
           switch (ev.key) {
             case "Enter": {
-              sendTweet(value);
+              sendTweet(textBox);
               return;
             }
           }
         }}
       />
 
-      <button onClick={() => sendTweet(value)}>Meow</button>
+      <button onClick={() => sendTweet(textBox)}>Meow</button>
       <div>{charLimit - minusChars}</div>
-    </div>
+    </InputBox>
   );
 };
 
