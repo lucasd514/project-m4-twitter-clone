@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { CurrentUserContext } from "../components/CreateUserContext";
 import TweetDetails from "../tweet/TweetDetails";
 import TweetInput from "../tweet/TweetInput";
+import TweetInput2 from "../tweet/TweetInput2";
 
 const HomeFeed = () => {
   const { currentUser, status } = useContext(CurrentUserContext);
@@ -28,10 +29,14 @@ const HomeFeed = () => {
     <>
       {homeStatus === "idle" ? (
         <HomeBox>
-          <TweetInput
+          <TweetInput2
             homeFeedData={homeFeedData}
             setHomeFeedData={setHomeFeedData}
-          />
+          ></TweetInput2>
+          {/* // <TweetInput
+          //   homeFeedData={homeFeedData}
+          //   setHomeFeedData={setHomeFeedData}
+          // /> */}
           {homeFeedData.tweetIds.map((tweetId) => {
             let individualTweet = homeFeedData.tweetsById[tweetId];
 
