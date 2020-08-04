@@ -3,10 +3,11 @@ import styled from "styled-components";
 import { Icon } from "react-icons-kit";
 import { arrowLeft } from "react-icons-kit/feather/arrowLeft";
 import IndyActionBar from "./indyTweetActionBar";
+import { useHistory } from "react-router-dom";
 
 const IndyTweetPage = (props) => {
   console.log(props.tweet);
-  console.log(props.tweet.tweet.author.handle);
+  console.log("author---------------------", props.tweet.tweet.author.handle);
 
   let authorLink = "/" + props.tweet.tweet.author.handle;
 
@@ -63,6 +64,17 @@ const IndyTweetPage = (props) => {
     font-size: 16px;
     padding-bottom: 16px;
   `;
+
+  const history = useHistory();
+
+  function navigateTweet(e) {
+    e.stopPropagation();
+    history.push(`/tweet/${props.value.id}`);
+  }
+  function navigateProfile(e) {
+    e.stopPropagation();
+    history.push(`/${props.tweet.tweet.author.handle}`);
+  }
   return (
     <div>
       <Meow>
@@ -71,15 +83,14 @@ const IndyTweetPage = (props) => {
         <p>Meow</p>
       </Meow>
       <Wrapper>
-        <a href={authorLink}>
-          <Header>
-            <Avatar src={props.tweet.tweet.author.avatarSrc} />
-            <Name>
-              <DisplayName>{props.tweet.tweet.author.displayName}</DisplayName>
-              <Username>@{props.tweet.tweet.author.handle}</Username>
-            </Name>
-          </Header>
-        </a>
+        <Header tabIndex="0" onClick={navigateProfile}>
+          <Avatar src={props.tweet.tweet.author.avatarSrc} />
+          <Name>
+            <DisplayName>{props.tweet.tweet.author.displayName}</DisplayName>
+            <Username>@{props.tweet.tweet.author.handle}</Username>
+          </Name>
+        </Header>
+
         <TweetContents>{props.tweet.tweet.status}</TweetContents>
         <Timestamp>{props.tweet.tweet.timestamp}</Timestamp>
         <Divider />

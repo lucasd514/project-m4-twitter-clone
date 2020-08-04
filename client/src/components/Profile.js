@@ -16,30 +16,26 @@ const Profile = () => {
   const handleName = handle;
 
   useEffect(() => {
-    if (currentUser) {
-      fetch(`/api/${handleName}/profile`)
-        // We get the API response and receive data in JSON format...
-        .then((response) => response.json())
-        // ...then we update the users state
-        .then((data) => {
-          setProfileData(data.profile);
-          setProfileStatus("idle");
-        });
-    }
-  }, [currentUser]);
+    fetch(`/api/${handleName}/profile`)
+      // We get the API response and receive data in JSON format...
+      .then((response) => response.json())
+      // ...then we update the users state
+      .then((data) => {
+        setProfileData(data.profile);
+        setProfileStatus("idle");
+      });
+  }, [handleName]);
 
   useEffect(() => {
-    if (currentUser) {
-      fetch(`/api/${handleName}/feed`)
-        // We get the API response and receive data in JSON format...
-        .then((response) => response.json())
-        // ...then we update the users state
-        .then((data) => {
-          setProfileTweets(data);
-          setStatusTweets("idle");
-        });
-    }
-  }, [currentUser]);
+    fetch(`/api/${handleName}/feed`)
+      // We get the API response and receive data in JSON format...
+      .then((response) => response.json())
+      // ...then we update the users state
+      .then((data) => {
+        setProfileTweets(data);
+        setStatusTweets("idle");
+      });
+  }, [handleName]);
 
   return (
     <>

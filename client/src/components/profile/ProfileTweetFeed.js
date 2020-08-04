@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ProfileActionBar from "./ProfileActionBar";
+import { useHistory } from "react-router-dom";
 
 const ProfileTweetFeed = (props) => {
   console.log("tweetfeed", props);
@@ -57,21 +58,33 @@ const ProfileTweetFeed = (props) => {
       Roboto, Ubuntu, "Helvetica Neue", sans-serif;
   `;
 
+  const history = useHistory();
+
+  function navigateTweet(e) {
+    e.stopPropagation();
+    history.push(`/tweet/${props.tweet.id}`);
+  }
+  function navigateProfile(e) {
+    e.stopPropagation();
+    history.push(`/${props.tweet.author.handle}`);
+  }
   return (
     <TweetBox>
-      <a href={tweets}>
-        <a href={profile}>
-          <Wrapper>
-            <Avatar src={props.tweet.author.avatarSrc} />
-            <Name>
-              <DisplayName>{props.tweet.author.displayName}</DisplayName>
-              <Username>@{props.tweet.author.handle}</Username>
-            </Name>
-          </Wrapper>
-        </a>
-        <TweetContents>{props.tweet.status}</TweetContents>
-        <Timestamp>{props.tweet.timestamp} </Timestamp>
-      </a>
+      <Wrapper tabIndex="0" onClick={navigateProfile}>
+        <Avatar src={props.tweet.author.avatarSrc} />
+        <Name>
+          <DisplayName>{props.tweet.author.displayName}</DisplayName>
+          <Username>@{props.tweet.author.handle}</Username>
+        </Name>
+      </Wrapper>
+
+      <TweetContents tabIndex="0" onClick={navigateTweet}>
+        {props.tweet.status}
+      </TweetContents>
+      <Timestamp tabIndex="0" onClick={navigateTweet}>
+        {props.tweet.timestamp}{" "}
+      </Timestamp>
+
       <ProfileActionBar buttoninfo={props} />
     </TweetBox>
   );
