@@ -9,7 +9,6 @@ const TweetInput2 = ({ setHomeFeedData, homeFeedData }) => {
   const [textBox, setTextBox] = React.useState("meow here!");
   const [charLimit, setCharLimit] = React.useState(280);
   console.log(textBox);
-  const minusChars = textBox.length;
 
   const requestOptions = {
     method: "POST",
@@ -46,7 +45,13 @@ const TweetInput2 = ({ setHomeFeedData, homeFeedData }) => {
           }
         }}
       />
-      <button onClick={() => sendTweet(textBox)}>Meow</button>
+      <button
+        disabled={textBox.length > 280}
+        onClick={() => sendTweet(textBox)}
+      >
+        Meow
+      </button>
+
       {280 - textBox.length > 150 ? (
         <Black>{280 - textBox.length}</Black>
       ) : 280 - textBox.length > 50 ? (
