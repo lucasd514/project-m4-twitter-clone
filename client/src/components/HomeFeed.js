@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { CurrentUserContext } from "../components/CreateUserContext";
 import TweetDetails from "../tweet/TweetDetails";
 import TweetInput from "../tweet/TweetInput";
@@ -18,7 +18,8 @@ const HomeFeed = () => {
       .then((data) => {
         setHomeFeedData(data);
         setHomeStatus("idle");
-      });
+      })
+      .catch((err) => window.location.replace("/error/noBueno"));
   }, [currentUser]);
 
   const HomeBox = styled.div`
@@ -44,10 +45,28 @@ const HomeFeed = () => {
           })}
         </HomeBox>
       ) : (
-        <div>{homeStatus}</div>
+        <LoadBox
+          src={
+            "https://vignette.wikia.nocookie.net/simpsons/images/d/db/Snowball_V.png/revision/latest?cb=20130424153630"
+          }
+          class="rotate"
+        />
       )}
     </>
   );
 };
 
+const rotate = keyframes`
+from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+`;
+const LoadBox = styled.img`
+  animation: ${rotate} 2s infinite linear;
+  width: 100;
+  height: 100;
+`;
 export default HomeFeed;

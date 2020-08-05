@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
 import ProfileHeader from "./profile/ProfileHeader";
 import IndyTweetpage from "./individualTweetpage/indyTweetPage";
+import styled, { keyframes } from "styled-components";
 import { CurrentUserContext } from "./CreateUserContext";
 
 const IndividualTweet = () => {
@@ -21,6 +21,9 @@ const IndividualTweet = () => {
         .then((data) => {
           setIndividualTweet(data);
           setIndividualTweetStatus("idle");
+        })
+        .catch((err) => {
+          window.location.replace("/error/noBueno");
         });
     }
   }, [currentUser]);
@@ -33,10 +36,27 @@ const IndividualTweet = () => {
           <IndyTweetpage tweet={IndividualTweet} />
         </div>
       ) : (
-        <div>{individualTweetStatus}</div>
+        <LoadBox
+          src={
+            "https://vignette.wikia.nocookie.net/simpsons/images/d/db/Snowball_V.png/revision/latest?cb=20130424153630"
+          }
+          class="rotate"
+        />
       )}
     </>
   );
 };
-
+const rotate = keyframes`
+from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+`;
+const LoadBox = styled.img`
+  animation: ${rotate} 2s infinite linear;
+  width: 100;
+  height: 100;
+`;
 export default IndividualTweet;

@@ -7,7 +7,7 @@ import Profile from "./components/Profile";
 import TweetDetails from "./tweet/TweetDetails";
 import SideBar from "./components/SideBar";
 import IndividualTweet from "./components/IndividualTweet";
-
+import Bomb from "./components/Bomb";
 function App() {
   return (
     <Router>
@@ -27,6 +27,9 @@ function App() {
         </Route>
         <Route exact path="/:handle/">
           <Profile />
+        </Route>
+        <Route exact path="/error/noBueno">
+          <Bomb />
         </Route>
       </Switch>
     </Router>

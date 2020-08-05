@@ -28,6 +28,9 @@ const TweetInput = ({ setHomeFeedData, homeFeedData }) => {
     body: JSON.stringify({ status: textBox }),
   };
 
+  const Bomb = () => {
+    return window.location.replace("/error/noBueno");
+  };
   function sendTweet(param) {
     fetch("/api/tweet", requestOptions)
       .then((response) => response.json())
@@ -38,7 +41,8 @@ const TweetInput = ({ setHomeFeedData, homeFeedData }) => {
           // ...then we update the users state
           .then((data) => {
             setHomeFeedData(data);
-          });
+          })
+          .catch((error) => console.log("this broke"), Bomb());
       });
   }
 
