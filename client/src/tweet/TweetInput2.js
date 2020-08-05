@@ -9,27 +9,6 @@ const TweetInput2 = ({ setHomeFeedData, homeFeedData }) => {
   console.log(textBox);
   const minusChars = textBox.length;
 
-  const Total = styled.div`
-    display: flex;
-  `;
-  const Input = styled.input`
-    border-radius: 4px;
-    border: 1px solid grey;
-    margin-left: 8vw;
-    margin-bottom: 50px;
-    margin-top: 50px;
-    height: 50px;
-    width: 500px;
-  `;
-  const Button = styled.button`
-    margin-left: 20px;
-    color: purple;
-    background-color: coral;
-    border-radius: 4px;
-    margin-top: 50px;
-    width: 100px;
-    height: 50px;
-  `;
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -52,7 +31,7 @@ const TweetInput2 = ({ setHomeFeedData, homeFeedData }) => {
 
   return (
     <div>
-      <input
+      <TweetInput
         type="text"
         value={textBox}
         onChange={(ev) => setTextBox(ev.target.value)}
@@ -70,4 +49,26 @@ const TweetInput2 = ({ setHomeFeedData, homeFeedData }) => {
     </div>
   );
 };
+
+const Total = styled.div`
+  display: flex;
+`;
+const TweetInput = styled.input`
+  border-radius: 4px;
+  border: 1px solid grey;
+  margin-left: 8vw;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  height: 50px;
+  width: 500px;
+`;
+const Button = styled.button`
+  margin-left: 20px;
+  color: purple;
+  background-color: coral;
+  border-radius: 4px;
+  margin-top: 50px;
+  width: 100px;
+  height: 50px;
+`;
 export default TweetInput2;

@@ -4,10 +4,16 @@ import { Icon } from "react-icons-kit";
 import { arrowLeft } from "react-icons-kit/feather/arrowLeft";
 import IndyActionBar from "./indyTweetActionBar";
 import { useHistory } from "react-router-dom";
+import moment from "moment";
 
 const IndyTweetPage = (props) => {
   let authorLink = "/" + props.tweet.tweet.author.handle;
 
+  let timeClean = moment(props.tweet.timestamp).format("h:mm a ∙ MMM Do, YYYY");
+  const photo = props.tweet.tweet.media;
+  const catPhotos = photo.map((ele) => ele.url);
+
+  console.log(catPhotos);
   const Name = styled.div`
     flex: 1;
     display: flex;
@@ -37,7 +43,6 @@ const IndyTweetPage = (props) => {
   const Meow = styled.div`
     width: 580px;
     display: flex;
-    border: 3px black solid;
   `;
   const Divider = styled.div`
     border-top: solid 2 black;
@@ -47,6 +52,7 @@ const IndyTweetPage = (props) => {
     background: white;
     width: 580px;
     margin-left: 250px;
+    margin-top: 20vh;
     padding: 16px;
     text-align: left;
     border: rgb(101, 119, 134) 2px solid;
@@ -57,6 +63,11 @@ const IndyTweetPage = (props) => {
     padding: 16px 0;
   `;
   const Timestamp = styled.div`
+    color: rgb(101, 119, 134);
+    font-size: 16px;
+    padding-bottom: 16px;
+  `;
+  const LikeRT = styled.div`
     color: rgb(101, 119, 134);
     font-size: 16px;
     padding-bottom: 16px;
@@ -82,7 +93,6 @@ const IndyTweetPage = (props) => {
       <Meow>
         {" "}
         <Icon icon={arrowLeft} tabIndex="0" onClick={goBack} />
-        <p>Meow</p>
       </Meow>
       <Wrapper>
         <Header tabIndex="0" onClick={navigateProfile}>
@@ -94,7 +104,9 @@ const IndyTweetPage = (props) => {
         </Header>
 
         <TweetContents>{props.tweet.tweet.status}</TweetContents>
-        <Timestamp>{props.tweet.tweet.timestamp}</Timestamp>
+        <img src={catPhotos} />
+        <LikeRT></LikeRT>
+        <Timestamp>{timeClean}</Timestamp>
         <Divider />
         <IndyActionBar buttoninfo={props} />
       </Wrapper>

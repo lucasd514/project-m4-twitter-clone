@@ -10,7 +10,8 @@ const TweetDetails = (props) => {
   let author = props.tweet.author.handle;
   let tweets = "/tweet/" + props.tweet.id;
   let timeClean = moment(props.tweet.timestamp).format("h:mm a ∙ MMM Do, YYYY");
-
+  let photo = props.tweet.media;
+  const catPhotos = photo.map((ele) => ele.url);
   const TweetWrapper = styled.div`
     background: white;
     width: 580px;
@@ -94,6 +95,7 @@ const TweetDetails = (props) => {
         <TweetContents tabIndex="0" onClick={navigateTweet}>
           {props.tweet.status}
         </TweetContents>
+        <img src={catPhotos} />
         <Timestamp tabIndex="0" onClick={navigateTweet}>
           {timeClean}{" "}
         </Timestamp>

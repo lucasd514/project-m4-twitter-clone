@@ -6,6 +6,9 @@ import { useHistory } from "react-router-dom";
 const ProfileTweetFeed = (props) => {
   let tweets = "/tweet/" + props.tweet.id;
   let profile = "/" + props.tweet.author.handle;
+  let photo = props.tweet.media;
+  const catPhotos = photo.map((ele) => ele.url);
+  console.log(catPhotos);
   const Wrapper = styled.header`
     display: flex;
   `;
@@ -80,6 +83,7 @@ const ProfileTweetFeed = (props) => {
       <TweetContents tabIndex="0" onClick={navigateTweet}>
         {props.tweet.status}
       </TweetContents>
+      <img src={catPhotos} />
       <Timestamp tabIndex="0" onClick={navigateTweet}>
         {props.tweet.timestamp}{" "}
       </Timestamp>
