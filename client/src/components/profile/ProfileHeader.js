@@ -6,6 +6,7 @@ import styled from "styled-components";
 const BannerImage = styled.img`
   z-index: 2;
   height: 60vh;
+  border: 2px black solid;
 `;
 
 const FollowBtn = styled.button`
@@ -13,14 +14,20 @@ const FollowBtn = styled.button`
   height: 45px;
   padding: 10px 15px;
   border-radius: 30px;
-  color: gold;
+  color: rgb(240, 188, 66);
   font-weight: 700;
   font-size: 1.1rem;
-  background: red;
+  background: rgb(134, 38, 51);
   cursor: pointer;
   float: right;
   margin-top: 20px;
   margin-right: 20px;
+  border: 2px black solid;
+  :hover {
+    color: rgb(134, 38, 51);
+    background: rgb(240, 188, 66);
+    cursor: pointer;
+  }
 `;
 const Avatar = styled.img`
   z-index: 4;
@@ -54,9 +61,7 @@ const DisplayName = styled.h2`
   font-size: 1.2rem;
 `;
 
-const LoccationJoin = styled.div`
-  border: 2px red solid;
-`;
+const LoccationJoin = styled.div``;
 const Followers = styled.div`
   border: 2px orange solid;
   position: relative;
@@ -71,18 +76,18 @@ const HeaderBox = styled.div`
 
 const Navigation = styled.nav``;
 
-const Rando = styled.div``;
 const ProfileHeader = (user) => {
   return (
     <HeaderBox>
-      <Rando>
-        <BannerImage src={user.value.bannerSrc} />
-        <Avatar src={user.value.avatarSrc} />
+      <BannerImage src={user.value.bannerSrc} />
+      <Avatar src={user.value.avatarSrc} />
+      <LoccationJoin>
         <FollowBtn>Follow</FollowBtn>
         <DisplayName>{user.value.displayName}</DisplayName>
         <Userinfo>{user.value.handle}</Userinfo>
-        <LoccationJoin>{user.value.location}</LoccationJoin>
-      </Rando>
+        <div>{user.value.location}</div>
+      </LoccationJoin>
+
       <Follow>
         Following:{user.value.numFollowers} Followers:{user.value.numFollowers}
       </Follow>
